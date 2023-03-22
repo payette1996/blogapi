@@ -6,24 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./public/assets/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./public/assets/css/style.css">
+    <script src="./public/assets/js/script.js"></script>
     <title>Blogapi</title>
 </head>
 <body>
-<form action="login.php" method="POST">
-  <div>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-  </div>
-  
-  <div>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-  </div>
-  
-  <div>
-    <input type="submit" value="Login">
-  </div>
-</form>
-
+    <h1><?= "Request : " . $req ?></h1>
+    <main></main>
 </body>
 </html>
