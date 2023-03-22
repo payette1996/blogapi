@@ -5,7 +5,14 @@ async function fetchView(view) {
 }
 
 async function setView(target, view) {
-    document.querySelector(`${target}`).innerHTML = await fetchView(`${view}`);
+    // document.querySelector(`${target}`).innerHTML = await fetchView(`${view}`);
+    const parent = document.querySelector(`${target}`);
+    const child = document.createElement("section");
+    child.innerHTML = await fetchView(`${view}`);
+
+    parent.append(child);
+
+    return child;
 }
 
 export { fetchView, setView };
