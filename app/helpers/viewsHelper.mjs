@@ -4,14 +4,16 @@ async function fetchView(view) {
     return html;
 }
 
-async function setView(target, view) {
-    // document.querySelector(`${target}`).innerHTML = await fetchView(`${view}`);
-    const parent = document.querySelector(`${target}`);
-    const child = document.createElement("section");
-    child.innerHTML = await fetchView(`${view}`);
-    parent.append(child);
+async function setView(target, view, event = null, callback = null) {
+    const element = document.querySelector(`${target}`);
+    element.innerHTML = await fetchView(`${view}`);
+    const insert = element.children[0];
 
-    return child.children[0];
+    if (event && callback) {
+        insert.addEventListener(event, callback);
+    }
+
+    return insert;
 }
 
 export { fetchView, setView };

@@ -9,19 +9,14 @@ view.addEventListener("submit", async function(event) {
     this.remove();
 
     if(action === "Register") {
-        view = await setView("main", "register");
-
-        view.addEventListener("submit", function(event) {
+        view = await setView("main", "register", "submit", event => {
             event.preventDefault();
-
             console.log("REGISTERING");
         });
-    } else if (action === "Login") {
-        view = await setView("main", "login");
 
-        view.addEventListener("submit", function(event) {
+    } else if (action === "Login") {
+        view = await setView("main", "login", "submit", event => {
             event.preventDefault();
-            
             console.log("LOGGING IN");
         });
     }
