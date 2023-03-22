@@ -1,3 +1,3 @@
-import { setView } from "./app/helpers/viewsHelper";
+import { setView } from "/blogapi/app/helpers/viewsHelper.mjs";
 
-setView("main", "splashForm");
+setView("main", "splash");

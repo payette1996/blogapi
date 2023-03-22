@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./public/assets/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./public/assets/css/style.css">
-    <script src="./public/assets/js/script.js"></script>
+    <script type="module" src="./public/assets/js/script.js"></script>
     <title>Blogapi</title>
 </head>
 <body>
