@@ -9,10 +9,9 @@ async function setView(target, view) {
     const parent = document.querySelector(`${target}`);
     const child = document.createElement("section");
     child.innerHTML = await fetchView(`${view}`);
-
     parent.append(child);
 
-    return child;
+    return child.children[0];
 }
 
 export { fetchView, setView };
