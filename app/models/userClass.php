@@ -1,62 +1,84 @@
 <?php
 class User {
-    private $id;
-    private $email;
-    private $firstName;
-    private $lastName;
-    private $password;
-    private $createdAt;
+    private int $id;
+    private string $email;
+    private string $firstName;
+    private string $lastName;
+    private string $password;
+    private array $blogs;
+    private array $posts;
+    private string $createdAt;
     
-    public function __construct($email, $firstName, $lastName, $password) {
-        $this->email = $email;
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->password = password_hash($password, PASSWORD_DEFAULT);
-        $this->createdAt = date('Y-m-d H:i:s');
+    public function __construct(string $email, string $firstName, string $lastName, string $password) {
+        $this->email = (string) $email;
+        $this->firstName = (string) $firstName;
+        $this->lastName = (string) $lastName;
+        $this->password = (string) password_hash($password, PASSWORD_DEFAULT);
+        $this->createdAt = (string) date('Y-m-d H:i:s');
     }
     
-    public function getId() {
+    public function getId() : int {
         return $this->id;
     }
+
+    public function setId(int $id) : void {
+        $this->id = (int) $id;
+    }
     
-    public function getEmail() {
+    public function getEmail() : string {
         return $this->email;
     }
     
-    public function setEmail($email) {
-        $this->email = $email;
+    public function setEmail(string $email) : void {
+        $this->email = (string) $email;
     }
     
-    public function getFirstName() {
+    public function getFirstName() : string {
         return $this->firstName;
     }
     
-    public function setFirstName($firstName) {
-        $this->firstName = $firstName;
+    public function setFirstName(string $firstName) : void {
+        $this->firstName = (string) $firstName;
     }
     
-    public function getLastName() {
+    public function getLastName() : string {
         return $this->lastName;
     }
     
-    public function setLastName($lastName) {
-        $this->lastName = $lastName;
+    public function setLastName(string $lastName) : void {
+        $this->lastName = (string) $lastName;
     }
     
-    public function getPassword() {
+    public function getPassword() : string {
         return $this->password;
     }
     
-    public function setPassword($password) {
-        $this->password = password_hash($password, PASSWORD_DEFAULT);
+    public function setPassword(string $password) : void {
+        $this->password = (string) password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    public function getBlogs() : array {
+        return $this->blogs;
+    }
+
+    public function setBlogs(array $blogs) : void {
+        $this->blogs = (array) $blogs;
+    }
+
+    public function getPosts() : array {
+        return $this->posts;
+    }
+
+    public function setPosts(array $posts) : void {
+        $this->posts = (array) $posts;
     }
     
-    public function getCreatedAt() {
+    public function getCreatedAt() : string {
         return $this->createdAt;
     }
     
-    public function setCreatedAt($createdAt) {
-        $this->createdAt = $createdAt;
+    public function setCreatedAt(string $createdAt) : void {
+        $this->createdAt = (string) $createdAt;
     }
 }
 ?>

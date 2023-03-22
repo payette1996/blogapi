@@ -1,52 +1,61 @@
 <?php
 class Blog {
-    private $id;
-    private $title;
-    private $description;
-    private $userId;
-    private $createdAt;
+    private int $id;
+    private string $title;
+    private string $description;
+    private array $posts;
+    private int $userId;
+    private string $createdAt;
     
-    public function __construct($title, $description, $userId) {
-        $this->title = $title;
-        $this->description = $description;
-        $this->userId = $userId;
-        $this->createdAt = date('Y-m-d H:i:s');
+    public function __construct(string $title, string $description, int $userId) {
+        $this->title = (string) $title;
+        $this->description = (string) $description;
+        $this->userId = (int) $userId;
+        $this->createdAt = (string) date('Y-m-d H:i:s');
     }
     
-    public function getId() {
+    public function getId() : int {
         return $this->id;
     }
     
-    public function getTitle() {
+    public function getTitle() : string {
         return $this->title;
     }
     
-    public function setTitle($title) {
+    public function setTitle(string $title) : void {
         $this->title = $title;
     }
     
-    public function getDescription() {
+    public function getDescription() : string {
         return $this->description;
     }
     
-    public function setDescription($description) {
-        $this->description = $description;
+    public function setDescription(string $description) : void {
+        $this->description = (string) $description;
+    }
+
+    public function getPosts() : array {
+        return $this->posts;
+    }
+
+    public function setPosts(array $posts) : void {
+        $this->posts = (array) $posts;
     }
     
-    public function getUserId() {
+    public function getUserId() : int {
         return $this->userId;
     }
 
-    public function setUserId($userId) {
+    public function setUserId(int $userId) : void {
         $this->userId = $userId;
     }
     
-    public function getCreatedAt() {
+    public function getCreatedAt() : string {
         return $this->createdAt;
     }
     
-    public function setCreatedAt($createdAt) {
-        $this->createdAt = $createdAt;
+    public function setCreatedAt(string $createdAt) : void {
+        $this->createdAt = (string) $createdAt;
     }
 }
 ?>
