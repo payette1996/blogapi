@@ -1,7 +1,18 @@
-document.querySelector("#registerForm").addEventListener("submit", async event => {
+if (typeof registerForm !== "undefined") {
+    delete registerForm;
+    const registerForm = document.querySelector("#registerForm");
+} else {
+    const registerForm = document.querySelector("#registerForm");
+}
+
+
+registerForm.addEventListener("submit", async event => {
     event.preventDefault();
 
-    alert("REGISTERED");
+    // fetch("/login", {
+    //     method: "POST",
+    //     body: new FormData(registerForm)
+    // });
 });
 
 document.querySelector("#backButton").addEventListener("click", () => {
