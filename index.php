@@ -10,7 +10,7 @@ $req = $_SERVER["REQUEST_URI"];
 if ($_SERVER['REQUEST_URI'] === '/blogapi/register') {
     http_response_code(200);
     header('Content-Type: text/plain');
-    echo "registered!";
+    echo $_POST["email"];
 } else {
     require_once "./app/views/app.php";
 }
