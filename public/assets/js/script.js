@@ -1,17 +1,17 @@
-async function setView(target, view, script = null) {
+async function setView(view, script = null) {
     const headElement = document.querySelector("head");
+    const mainElement = document.querySelector("main");
     const currentScriptElement = document.querySelector("#currentScript");
     let response;
 
     response = await fetch(`app/views/${view}.html`, {
         headers: {
-          'Cache-Control': 'no-cache'
+            'Cache-Control': 'no-cache'
         }
-      });
+    });
     const fetchedHtml = await response.text();
 
-    const targetElement = document.querySelector(`#${target}`);
-    targetElement.innerHTML = fetchedHtml;
+    mainElement.innerHTML = fetchedHtml;
 
     if (script) {
         currentScriptElement.remove();
@@ -21,13 +21,13 @@ async function setView(target, view, script = null) {
 
         response = await fetch(`app/helpers/${script}.js`, {
             headers: {
-              'Cache-Control': 'no-cache'
+                'Cache-Control': 'no-cache'
             }
-          });
+        });
         const fetchedScript = await response.text();
         newScriptElement.innerHTML = fetchedScript;
         headElement.append(newScriptElement);
     }
 }
 
-setView("main", "splashForm", "splashForm");
+setView("splashForm", "splashForm");

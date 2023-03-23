@@ -11,7 +11,6 @@
     <title>Blogapi</title>
 </head>
 <body>
-    <h1><?= "Request : " . $req ?></h1>
-    <main id="main"></main>
+    <main></main>
 </body>
 </html>
