@@ -9,10 +9,12 @@ if (typeof registerForm !== "undefined") {
 registerForm.addEventListener("submit", async event => {
     event.preventDefault();
 
-    // fetch("/login", {
-    //     method: "POST",
-    //     body: new FormData(registerForm)
-    // });
+    const response = await fetch("/blogapi/register", {
+        method: "POST",
+        body: new FormData(registerForm)
+    });
+
+    console.log(await response.text());
 });
 
 document.querySelector("#backButton").addEventListener("click", () => {
