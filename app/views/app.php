@@ -7,10 +7,11 @@
     <link rel="shortcut icon" href="./public/assets/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./public/assets/css/style.css">
     <script src="./public/assets/js/script.js" defer></script>
+    <script id="currentScript"></script>
     <title>Blogapi</title>
 </head>
 <body>
     <h1><?= "Request : " . $req ?></h1>
-    <main></main>
+    <main id="main"></main>
 </body>
 </html>
