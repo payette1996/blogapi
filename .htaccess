@@ -1,2 +1,0 @@
-# Treats .mjs extension as javascript
-AddType application/javascript .mjs

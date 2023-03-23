@@ -1,30 +1,25 @@
-import { setView } from "/blogapi/app/helpers/viewsHelper.mjs";
+async function setView(target, view, script = null) {
+    let response;
 
-let view = await setView("main", "splashForm", "submit", async event => {
-    event.preventDefault();
-    const action = event.submitter.value;
+    response = await fetch(`app/views/${view}.html`);
+    const fetchedHtml = await response.text();
 
-    if(action === "Register") {
-        view = await setView("main", "registerForm", "submit", async event => {
-            event.preventDefault();
-            console.log("REGISTERING");
-            view = await setView("main", "loginForm", "submit", async event => {
-                event.preventDefault();
-                console.log("LOGGING IN");
-                view = await setView("main", "postForm", "submit", async event => {
-                    event.preventDefault();
-                    console.log("POSTING");
-                });
-            });
-        });
-    } else if (action === "Login") {
-        view = await setView("main", "loginForm", "submit", async event => {
-            event.preventDefault();
-            console.log("LOGGING IN");
-            view = await setView("main", "postForm", "submit", async event => {
-                event.preventDefault();
-                console.log("POSTING");
-            });
-        });
+    const targetElement = document.querySelector(`${target}`);
+    targetElement.innerHTML = fetchedHtml;
+    const insert = targetElement.children[0];
+
+    if (script) {
+        const headElement = document.querySelector("head");
+        const scriptElement = document.createElement("script");
+        scriptElement.defer = true;
+
+        response = await fetch(`app/helpers/${script}.js`);
+        const fetchedScript = await response.text();
+        scriptElement.innerHTML = fetchedScript;
+        headElement.append(scriptElement);
     }
-});
+
+    return insert;
+}
+
+setView("main", "splashForm", "splashForm");
