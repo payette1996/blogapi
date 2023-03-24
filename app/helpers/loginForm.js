@@ -8,7 +8,12 @@ if (typeof loginForm !== "undefined") {
 loginForm.addEventListener("submit", async event => {
     event.preventDefault();
 
-    alert("LOGGED IN");
+    const response = await fetch("/blogapi/login", {
+        method: "POST",
+        body: new FormData(loginForm)
+    });
+
+    console.log(await response.text());
 });
 
 document.querySelector("#backButton").addEventListener("click", () => {

@@ -9,11 +9,18 @@ if(session_status() === PHP_SESSION_NONE) {
 
 $req = $_SERVER["REQUEST_URI"];
 
-if ($_SERVER['REQUEST_URI'] === '/blogapi/register') {
-    http_response_code(200);
-    header('Content-Type: text/plain');
-    echo $_POST["email"];
-} else {
-    require_once "./app/views/app.php";
+switch ($req) {
+    case "/blogapi/register":
+        http_response_code(200);
+        header('Content-Type: text/plain');
+        echo "Register request for : {$_POST['email']}";
+        break;
+    case "/blogapi/login":
+        http_response_code(200);
+        header('Content-Type: text/plain');
+        echo "Login request for : {$_POST['email']}";
+        break;
+    default:
+        require_once "./app/views/app.php";
 }
 ?>
