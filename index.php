@@ -1,13 +1,14 @@
 <?php
 declare(strict_types=1);
 
-$config = require_once "./config/database.php";
+require_once "./app/controllers/userController.php";
 
 if(session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 $req = $_SERVER["REQUEST_URI"];
+$userManager = new UserController;
 
 switch ($req) {
     case "/blogapi/register":
@@ -18,7 +19,17 @@ switch ($req) {
             isset($_POST['lastName']) &&
             isset($_POST['password'])
         ) {
-            
+            $email = $_POST['email'];
+            $firstName = $_POST['firstName'];
+            $lastName = $_POST['lastName'];
+            $password = $_POST['password'];
+
+            if ($userManager->registerUser($email, $firstName, $lastName, $password)) {
+                echo "Registered successfully!";
+            } else {
+                echo "An error occured during registration!";
+            }
+
         } else {
             echo "Welcome to the register endpoint";
         }

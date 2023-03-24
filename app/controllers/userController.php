@@ -6,7 +6,7 @@ class UserController {
     private PDO $pdo;
 
     public function __construct() {
-        $this->pdo = Database::getInstance();
+        $this->pdo = new Database();
     }
 
     public function registerUser(string $email, string $firstName, string $lastName, string $password) : bool {
