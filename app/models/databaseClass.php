@@ -14,7 +14,7 @@ class Database {
                 OPTIONS
             );
         } catch (PDOException $exception) {
-            
+
             exit($exception);
         }
     }

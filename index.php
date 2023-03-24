@@ -13,8 +13,12 @@ switch ($req) {
     case "/blogapi/register":
         http_response_code(200);
         header('Content-Type: text/plain');
-        if (isset($_POST['email'])) {
-            echo "Register request for : {$_POST['email']}";
+        if (isset($_POST['email']) &&
+            isset($_POST['firstName']) &&
+            isset($_POST['lastName']) &&
+            isset($_POST['password'])
+        ) {
+            
         } else {
             echo "Welcome to the register endpoint";
         }
