@@ -13,7 +13,7 @@ loginForm.addEventListener("submit", async event => {
         body: new FormData(loginForm)
     });
 
-    console.log(await response.text());
+    document.querySelector("main").append(await response.text());
 });
 
 document.querySelector("#backButton").addEventListener("click", () => {
