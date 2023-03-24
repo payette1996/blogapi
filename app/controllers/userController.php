@@ -1,12 +1,13 @@
 <?php
 require_once "./app/models/userClass.php";
-require_once "./app/models/databaseClass.php";
+require_once "./config/database.php";
 
 class UserController {
     private PDO $pdo;
 
     public function __construct() {
-        $this->pdo = new Database();
+        global $dsn, $username, $password, $options;
+        $this->pdo = new PDO($dsn, $username, $password, $options);
     }
 
     public function registerUser(string $email, string $firstName, string $lastName, string $password) : bool {
