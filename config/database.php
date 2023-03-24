@@ -1,14 +1,18 @@
 <?php
-    $driver = "mysql";
-    $host = "localhost";
-    $database = "blogapi";
-    $username = "root";
-    $password = "";
-    $charset = "utf8mb4";
-    $options = [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    ];
+namespace Config;
 
-    $dsn = "$driver:host=$host;dbname=$database;charset=$charset";
+use PDO;
+
+const DRIVER = "mysql";
+const HOST = "localhost";
+const DATABASE = "blogapi";
+const USERNAME = "root";
+const PASSWORD = "";
+const CHARSET = "utf8mb4";
+const OPTIONS = [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+];
+
+const DSN = DRIVER . ":host=" . HOST . ";dbname=" . DATABASE . ";charset=" . CHARSET;
 ?>

@@ -1,15 +1,8 @@
 <?php
 require_once "./app/models/userClass.php";
-require_once "./config/database.php";
+require_once "./app/models/databaseClass.php";
 
 class UserController {
-    private PDO $pdo;
-
-    public function __construct() {
-        global $dsn, $username, $password, $options;
-        $this->pdo = new PDO($dsn, $username, $password, $options);
-    }
-
     public function registerUser(string $email, string $firstName, string $lastName, string $password) : bool {
         $user = new User($email, $firstName, $lastName, $password);
 
@@ -26,7 +19,7 @@ class UserController {
             ":created_at" => $user->getCreatedAt()
         ];
 
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = Database::pdo()->prepare($sql);
 
         foreach ($params as $param => $value) {
             $stmt->bindValue($param, $value);
