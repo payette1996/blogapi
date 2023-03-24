@@ -8,10 +8,10 @@ class Blog {
     private string $createdAt;
     
     public function __construct(string $title, string $description, int $userId) {
-        $this->title = (string) $title;
-        $this->description = (string) $description;
-        $this->userId = (int) $userId;
-        $this->createdAt = (string) date('Y-m-d H:i:s');
+        $this->setTitle($title);
+        $this->setDescription($description);
+        $this->setUserId($userId);
+        $this->setCreatedAt();
     }
     
     public function getId() : int {
@@ -54,8 +54,8 @@ class Blog {
         return $this->createdAt;
     }
     
-    public function setCreatedAt(string $createdAt) : void {
-        $this->createdAt = (string) $createdAt;
+    public function setCreatedAt() : void {
+        $this->createdAt = date('Y-m-d H:i:s');
     }
 }
 ?>

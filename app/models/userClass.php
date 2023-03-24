@@ -10,11 +10,11 @@ class User {
     private string $createdAt;
     
     public function __construct(string $email, string $firstName, string $lastName, string $password) {
-        $this->email = (string) $email;
-        $this->firstName = (string) $firstName;
-        $this->lastName = (string) $lastName;
-        $this->password = (string) password_hash($password, PASSWORD_DEFAULT);
-        $this->createdAt = (string) date('Y-m-d H:i:s');
+        $this->setEmail($email);
+        $this->setFirstName($firstName);
+        $this->setLastName($lastName);
+        $this->setPassword($password);
+        $this->setCreatedAt();
     }
     
     public function getId() : int {
@@ -77,8 +77,8 @@ class User {
         return $this->createdAt;
     }
     
-    public function setCreatedAt(string $createdAt) : void {
-        $this->createdAt = (string) $createdAt;
+    public function setCreatedAt() : void {
+        $this->createdAt = (string) date('Y-m-d H:i:s');
     }
 }
 ?>
