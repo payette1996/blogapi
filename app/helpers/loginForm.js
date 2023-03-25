@@ -1,4 +1,3 @@
-if (typeof window.loginForm) { delete window.loginForm; }
 window.loginForm = document.querySelector("#loginForm");
 
 loginForm.addEventListener("submit", async event => {

@@ -1,4 +1,3 @@
-if (typeof window.registerForm) { delete window.registerForm; }
 window.registerForm = document.querySelector("#registerForm");
 
 registerForm.addEventListener("submit", async event => {
