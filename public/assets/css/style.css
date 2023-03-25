@@ -1,13 +1,19 @@
 :root {
-    --toast-var: 0px;
+    --toast-right: 0px;
 }
 
 @keyframes slide-in-out {
     0% {
-        right: var(--toast-var);
+        right: var(--toast-right);
+    }
+    20% {
+        right: 0;
+    }
+    80% {
+        right: 0;
     }
     100% {
-        right: 0;
+        right: var(--toast-right);
     }
 }
 
@@ -66,12 +72,12 @@ input[type="submit"]:last-child {
 
 .toast {
     position: absolute;
-    right: 0px;
+    right: var(--toast-right);
     top: 1rem;
     background-color: rgb(245, 245, 245);
     padding: .5rem 2rem;
     border: 2px solid rgb(45, 45, 45);
     border-right: none;
     border-radius: 5px 0 0 5px;
-    animation: slide-in-out 2s;
+    animation: slide-in-out 7s;
 }

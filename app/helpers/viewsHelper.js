@@ -29,7 +29,7 @@ async function setView(view, toast = null) {
             toast.textContent = "Welcome guest!";
             mainElement.append(toast);
             const toastWidth = toast.offsetWidth;
-            document.documentElement.style.setProperty("--toast-var", `-${toastWidth}px`);
+            document.documentElement.style.setProperty("--toast-right", `-${toastWidth}px`);
         }
     } else {
         throw new Error("Unable to fetch the required resource.");
