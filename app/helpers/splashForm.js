@@ -1,4 +1,4 @@
-if (typeof splashForm !== "undefined") {
+if (typeof splashForm) {
     delete splashForm;
     const splashForm = document.querySelector("#splashForm");
 } else {
@@ -10,8 +10,8 @@ splashForm.addEventListener("submit", async event => {
 
     const action = event.submitter.value;
     if (action === "Register") {
-        await setView("registerForm", "registerForm");
+        await setView("registerForm");
     } else if (action === "Login"){
-        await setView("loginForm", "loginForm");
+        await setView("loginForm");
     }
 });

@@ -18,7 +18,7 @@ class Post {
     }
 
     public function setId(int $id) : void {
-        $this->id = (int) $id;
+        $this->id = $id;
     }
 
     public function getTitle() : string {
@@ -26,7 +26,7 @@ class Post {
     }
 
     public function setTitle(string $title) : void {
-        $this->title = (string) $title;
+        $this->title = $title;
     }
 
     public function getDescription() : string {
@@ -34,7 +34,7 @@ class Post {
     }
 
     public function setDescription(string $description) : void {
-        $this->description = (string) $description;
+        $this->description = $description;
     }
 
     public function getBlogId() : int {
@@ -42,7 +42,7 @@ class Post {
     }
 
     public function setBlogId(int $blogId) : void {
-        $this->blogId = (int) $blogId;
+        $this->blogId = $blogId;
     }
 
     public function getCreatedAt() : string {

@@ -13,34 +13,34 @@ $userManager = new UserController;
 switch ($req) {
     case "/blogapi/register":
         http_response_code(200);
-        header('Content-Type: text/plain');
-        if (isset($_POST['email']) &&
-            isset($_POST['firstName']) &&
-            isset($_POST['lastName']) &&
-            isset($_POST['password'])
+        header("Content-Type: text/plain");
+        if (isset($_POST["email"]) &&
+            isset($_POST["firstName"]) &&
+            isset($_POST["lastName"]) &&
+            isset($_POST["password"])
         ) {
-            $email = $_POST['email'];
-            $firstName = $_POST['firstName'];
-            $lastName = $_POST['lastName'];
-            $password = $_POST['password'];
-
-            if ($userManager->registerUser($email, $firstName, $lastName, $password)) {
+            if ($userManager->registerUser($_POST)) {
                 echo "Registered successfully!";
             } else {
                 echo "An error occured during registration!";
             }
 
         } else {
-            echo "Welcome to the register endpoint";
+            echo "Welcome to the register endpoint.";
         }
         break;
     case "/blogapi/login":
         http_response_code(200);
-        header('Content-Type: text/plain');
-        if (isset($_POST['email'])) {
-            echo "Login request for : {$_POST['email']}";
+        header("Content-Type: text/plain");
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $user = $userManager->loginUser($_POST);
+            if ($user) {
+                echo "Logged in successfully!";
+            } else {
+                echo "Incorrect combination!";
+            }
         } else {
-            echo "Welcome to the login endpoint";
+            echo "Welcome to the login endpoint.";
         }
         break;
     default:

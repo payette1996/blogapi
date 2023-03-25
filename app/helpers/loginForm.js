@@ -1,4 +1,4 @@
-if (typeof loginForm !== "undefined") {
+if (typeof loginForm) {
     delete loginForm;
     const loginForm = document.querySelector("#loginForm");
 } else {
@@ -17,5 +17,5 @@ loginForm.addEventListener("submit", async event => {
 });
 
 document.querySelector("#backButton").addEventListener("click", () => {
-    setView("splashForm", "splashForm");
+    setView("splashForm");
 });

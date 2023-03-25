@@ -31,7 +31,7 @@ class Blog {
     }
     
     public function setDescription(string $description) : void {
-        $this->description = (string) $description;
+        $this->description = $description;
     }
 
     public function getPosts() : array {
@@ -39,7 +39,7 @@ class Blog {
     }
 
     public function setPosts(array $posts) : void {
-        $this->posts = (array) $posts;
+        $this->posts = $posts;
     }
     
     public function getUserId() : int {

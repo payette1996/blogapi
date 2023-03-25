@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="./public/assets/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./public/assets/css/style.css">
     <script src="./public/assets/js/script.js" defer></script>
-    <script id="currentScript"></script>
+    <script id="currentScript" defer></script>
     <title>Blogapi</title>
 </head>
 <body>

@@ -1,33 +1,29 @@
-async function setView(view, script = null) {
-    const headElement = document.querySelector("head");
-    const mainElement = document.querySelector("main");
-    const currentScriptElement = document.querySelector("#currentScript");
-    let response;
-
-    response = await fetch(`app/views/${view}.html`, {
-        headers: {
-            'Cache-Control': 'no-cache'
-        }
+async function setView(view) {
+    const viewResponse = await fetch(`app/views/${view}.html`, {
+        headers: { 'Cache-Control': 'no-cache' }
     });
-    const fetchedHtml = await response.text();
 
-    mainElement.innerHTML = fetchedHtml;
+    const helperResponse = await fetch(`app/helpers/${view}.js`, {
+        headers: { 'Cache-Control': 'no-cache' }
+    });
 
-    if (script) {
+    if (viewResponse.ok && helperResponse.ok) {
+        const mainElement = document.querySelector("main");
+        const fetchedHtml = await viewResponse.text();
+        mainElement.innerHTML = fetchedHtml;
+
+        const currentScriptElement = document.querySelector("#currentScript");
         currentScriptElement.remove();
         const newScriptElement = document.createElement("script");
         newScriptElement.id = "currentScript";
         newScriptElement.defer = true;
-
-        response = await fetch(`app/helpers/${script}.js`, {
-            headers: {
-                'Cache-Control': 'no-cache'
-            }
-        });
-        const fetchedScript = await response.text();
+        const fetchedScript = await helperResponse.text();
         newScriptElement.innerHTML = fetchedScript;
+        const headElement = document.querySelector("head");
         headElement.append(newScriptElement);
+    } else {
+        throw new Error("Unable to fetch the required resource.");
     }
 }
 
-setView("splashForm", "splashForm");
+setView("splashForm");

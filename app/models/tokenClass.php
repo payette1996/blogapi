@@ -16,7 +16,7 @@ class Token {
     }
 
     public function setId(int $id) : void {
-        $this->id = (int) $id;
+        $this->id = $id;
     }
 
     public function getLexeme() : string {
@@ -24,7 +24,7 @@ class Token {
     }
 
     public function setLexeme(string $lexeme) : void {
-        $this->lexeme = (string) $lexeme;
+        $this->lexeme = $lexeme;
     }
 
     public function getUserId() : int {
@@ -32,7 +32,7 @@ class Token {
     }
 
     public function setUserId(int $userId) : void {
-        $this->userId = (int) $userId;
+        $this->userId = $userId;
     }
 
     public function getCreatedAt() : string {
@@ -40,7 +40,7 @@ class Token {
     }
     
     public function setCreatedAt() : void {
-        $this->createdAt = (string) date('Y-m-d H:i:s');
+        $this->createdAt = date('Y-m-d H:i:s');
     }
 }
 ?>

@@ -1,10 +1,9 @@
-if (typeof registerForm !== "undefined") {
+if (typeof registerForm) {
     delete registerForm;
     const registerForm = document.querySelector("#registerForm");
 } else {
     const registerForm = document.querySelector("#registerForm");
 }
-
 
 registerForm.addEventListener("submit", async event => {
     event.preventDefault();
@@ -18,5 +17,5 @@ registerForm.addEventListener("submit", async event => {
 });
 
 document.querySelector("#backButton").addEventListener("click", () => {
-    setView("splashForm", "splashForm");
+    setView("splashForm");
 });
