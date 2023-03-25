@@ -18,8 +18,8 @@ class UserController {
             ":lastname" => $user->getLastName(),
             ":created_at" => $user->getCreatedAt()
         ];
-
-       $stmt = Database::pdo()->prepare($sql);
+        
+        $stmt = Database::pdo()->prepare($sql);
 
         foreach ($params as $param => $value) {
             $stmt->bindValue($param, $value);
@@ -38,6 +38,7 @@ class UserController {
         $stmt->bindValue(":email", $array["email"]);
         $stmt->execute();
         $row = $stmt->fetch();
+
         if (password_verify($array["password"], $row["password"])) {
             return new User($row);
         }

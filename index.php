@@ -12,37 +12,37 @@ $userManager = new UserController;
 
 switch ($req) {
     case "/blogapi/register":
-        http_response_code(200);
-        header("Content-Type: text/plain");
-        if (isset($_POST["email"]) &&
-            isset($_POST["firstName"]) &&
-            isset($_POST["lastName"]) &&
-            isset($_POST["password"])
-        ) {
-            if ($userManager->registerUser($_POST)) {
-                echo "Registered successfully!";
-            } else {
-                echo "An error occured during registration!";
-            }
+        $json = file_get_contents("php://input");
+        $array = json_decode($json, true);
 
+        http_response_code(200);
+        header("Content-Type: application/json");
+        if ($userManager->registerUser($array)) {
+            $data = ["registered" => true];
         } else {
-            echo "Welcome to the register endpoint.";
+            $data = ["registered" => false];
         }
+        echo json_encode($data);
+
         break;
+
     case "/blogapi/login":
         http_response_code(200);
-        header("Content-Type: text/plain");
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $user = $userManager->loginUser($_POST);
-            if ($user) {
-                echo "Logged in successfully!";
-            } else {
-                echo "Incorrect combination!";
-            }
+        header("Content-Type: application/json");
+        $user = $userManager->loginUser($_POST);
+        if ($user) {
+            $data = ["authenticated" => true];
         } else {
-            echo "Welcome to the login endpoint.";
+            $data = ["authenticated" => false];
         }
+        echo json_encode($data);
         break;
+    case "/blogapi/logout":
+        session_unset();
+        session_destroy();
+        http_response_code(200);
+        break;
+
     default:
         require_once "./app/views/app.php";
 }
