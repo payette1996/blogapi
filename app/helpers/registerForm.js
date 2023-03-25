@@ -1,9 +1,5 @@
-if (typeof registerForm) {
-    delete registerForm;
-    const registerForm = document.querySelector("#registerForm");
-} else {
-    const registerForm = document.querySelector("#registerForm");
-}
+if (typeof window.registerForm) { delete window.registerForm; }
+window.registerForm = document.querySelector("#registerForm");
 
 registerForm.addEventListener("submit", async event => {
     event.preventDefault();

@@ -1,9 +1,5 @@
-if (typeof splashForm) {
-    delete splashForm;
-    const splashForm = document.querySelector("#splashForm");
-} else {
-    const splashForm = document.querySelector("#splashForm");
-}
+if (typeof window.splashForm) { delete window.splashForm; }
+window.splashForm = document.querySelector("#splashForm");
 
 splashForm.addEventListener("submit", async event => {
     event.preventDefault();

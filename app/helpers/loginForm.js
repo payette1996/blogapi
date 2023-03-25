@@ -1,9 +1,5 @@
-if (typeof loginForm) {
-    delete loginForm;
-    const loginForm = document.querySelector("#loginForm");
-} else {
-    const loginForm = document.querySelector("#loginForm");
-}
+if (typeof window.loginForm) { delete window.loginForm; }
+window.loginForm = document.querySelector("#loginForm");
 
 loginForm.addEventListener("submit", async event => {
     event.preventDefault();
