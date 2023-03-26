@@ -21,6 +21,8 @@ loginForm.addEventListener("submit", async event => {
             setView("dashboard", "Welcome to your dashboard!");
         } else {
             toast("Incorrect combination!");
+            const passwordInput = document.querySelector("#password");
+            passwordInput.value = "";
         }
     } else {
         throw new Error("An error occured upon attempting to login.");
