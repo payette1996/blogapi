@@ -16,7 +16,6 @@ switch ($req) {
     case "/blogapi/register":
         $json = file_get_contents("php://input");
         $array = json_decode($json, true);
-
         http_response_code(200);
         header("Content-Type: application/json");
         if ($userManager->registerUser($array)) {
@@ -25,13 +24,10 @@ switch ($req) {
             $data = ["registered" => false];
         }
         echo json_encode($data);
-
         break;
-
     case "/blogapi/login":
         $json = file_get_contents("php://input");
         $array = json_decode($json, true);
-
         http_response_code(200);
         header("Content-Type: application/json");
         $user = $userManager->loginUser($array);
@@ -54,6 +50,8 @@ switch ($req) {
             http_response_code(200);
             header("Content-Type: application/json");
             echo json_encode($user->getProps());
+        } else {
+            echo json_encode(["session" => false]);
         }
         break;
     case "/blogapi/users":

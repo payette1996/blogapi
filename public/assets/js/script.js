@@ -4,7 +4,7 @@ async function fetchSession() {
     if (response.ok) {
         const responseJson = await response.json();
 
-        if (responseJson.firstName) {
+        if (responseJson.session !== false) {
             setView("dashboard", `Welcome back ${responseJson.firstName}!`);
         } else {
             setView("splashForm", "Welcome to Blogapi!");
