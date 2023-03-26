@@ -6,10 +6,10 @@
     0% {
         right: var(--toast-right);
     }
-    20% {
+    10% {
         right: 0;
     }
-    80% {
+    90% {
         right: 0;
     }
     100% {
@@ -79,6 +79,6 @@ input[type="submit"]:last-child {
     border: 2px solid rgb(45, 45, 45);
     border-right: none;
     border-radius: 5px 0 0 5px;
-    animation: slide-in-out 7s;
+    animation: slide-in-out 5s;
     margin-left: 1rem;
 }
