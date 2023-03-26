@@ -1,4 +1,4 @@
-async function setView(view, toast = null) {
+async function setView(view, toastMsg = null) {
     const viewResponse = await fetch(`app/views/${view}.html`, {
         headers: { 'Cache-Control': 'no-cache' }
     });
@@ -22,13 +22,13 @@ async function setView(view, toast = null) {
         const headElement = document.querySelector("head");
         headElement.append(newScriptElement);
 
-        if (toast) {
-            const toast = document.createElement("div");
-            toast.id = "toast";
-            toast.classList.add("toast");
-            toast.textContent = "Welcome guest!";
-            mainElement.append(toast);
-            const toastWidth = toast.offsetWidth;
+        if (toastMsg) {
+            const toastEl = document.createElement("div");
+            toastEl.id = "toast";
+            toastEl.classList.add("toast");
+            toastEl.textContent = toastMsg;
+            mainElement.append(toastEl);
+            const toastWidth = toastEl.offsetWidth;
             document.documentElement.style.setProperty("--toast-right", `-${toastWidth}px`);
         }
     } else {

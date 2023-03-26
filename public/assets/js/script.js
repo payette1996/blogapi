@@ -1,1 +1,1 @@
-setView("splashForm", "welcome!");
+setView("splashForm", "Welcome to Blogapi!");
