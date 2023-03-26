@@ -20,7 +20,7 @@ loginForm.addEventListener("submit", async event => {
         if (responseJson.authenticated) {
             setView("dashboard", "Welcome to your dashboard!");
         } else {
-            setView("loginForm", "Incorrect combination!");
+            toast("Incorrect combination!");
         }
     } else {
         throw new Error("An error occured upon attempting to login.");

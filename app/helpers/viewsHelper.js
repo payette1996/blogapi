@@ -23,13 +23,7 @@ async function setView(view, toastMsg = null) {
         headElement.append(newScriptElement);
 
         if (toastMsg) {
-            const toastEl = document.createElement("div");
-            toastEl.id = "toast";
-            toastEl.classList.add("toast");
-            toastEl.textContent = toastMsg;
-            mainElement.append(toastEl);
-            const toastWidth = toastEl.offsetWidth;
-            document.documentElement.style.setProperty("--toast-right", `-${toastWidth}px`);
+            toast(toastMsg);
         }
     } else {
         throw new Error("Unable to fetch the required resource.");
