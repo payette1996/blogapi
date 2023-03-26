@@ -80,4 +80,5 @@ input[type="submit"]:last-child {
     border-right: none;
     border-radius: 5px 0 0 5px;
     animation: slide-in-out 7s;
+    margin-left: 1rem;
 }

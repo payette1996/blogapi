@@ -19,7 +19,7 @@ registerForm.addEventListener("submit", async event => {
         const responseJson = await response.json();
         console.log(responseJson.registered);
         if (responseJson.registered) {
-            setView("loginForm");
+            setView("loginForm", `Thanks for registering ${formDataObject["firstName"]}!`);
         } else {
             document.querySelector("main").append("An error occured during registration");
         }
