@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+require_once "./app/models/userClass.php";
 require_once "./app/controllers/userController.php";
 
 if(session_status() === PHP_SESSION_NONE) {
@@ -35,6 +36,7 @@ switch ($req) {
         $user = $userManager->loginUser($array);
         if ($user) {
             $data = ["authenticated" => true];
+            $_SESSION["user"] = serialize($user);
         } else {
             $data = ["authenticated" => false];
         }
@@ -45,7 +47,16 @@ switch ($req) {
         session_destroy();
         http_response_code(200);
         break;
-
+    case "/blogapi/session":
+        if (isset($_SESSION["user"])) {
+            $user = unserialize($_SESSION["user"]);
+            http_response_code(200);
+            header("Content-Type: application/json");
+            echo json_encode($user->getProps());
+        } else {
+            echo json_encode(["session" => false]);
+        }
+        break;
     default:
         require_once "./app/views/app.php";
 }

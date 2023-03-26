@@ -24,8 +24,6 @@ loginForm.addEventListener("submit", async event => {
             const passwordInput = document.querySelector("#password");
             passwordInput.value = "";
         }
-    } else {
-        throw new Error("An error occured upon attempting to login.");
     }
 });
 

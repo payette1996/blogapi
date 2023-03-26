@@ -82,5 +82,15 @@ class User {
     public function setCreatedAt() : void {
         $this->createdAt = date('Y-m-d H:i:s');
     }
+
+    public function getProps() {
+        $props = [];
+
+        foreach ($this as $key => $value) {
+            $props[$key] = $value;
+        }
+
+        return $props;
+    }
 }
 ?>
