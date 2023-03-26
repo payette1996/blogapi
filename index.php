@@ -27,9 +27,12 @@ switch ($req) {
         break;
 
     case "/blogapi/login":
+        $json = file_get_contents("php://input");
+        $array = json_decode($json, true);
+
         http_response_code(200);
         header("Content-Type: application/json");
-        $user = $userManager->loginUser($_POST);
+        $user = $userManager->loginUser($array);
         if ($user) {
             $data = ["authenticated" => true];
         } else {
