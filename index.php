@@ -2,35 +2,39 @@
 declare(strict_types=1);
 
 require_once "./app/models/databaseClass.php";
-require_once "./app/models/userClass.php";
 require_once "./app/controllers/userController.php";
+require_once "./app/controllers/blogController.php";
+require_once "./app/controllers/postController.php";
 
 if(session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-$req = $_SERVER["REQUEST_URI"];
-$userManager = new UserController;
+$request = $_SERVER["REQUEST_URI"];
+$sections = explode("/", $request);
+$resource = isset($sections[2]) ? $sections[2] : null;
+$id = isset($sections[3]) ? $sections[3] : null;
+$method = $_SERVER["REQUEST_METHOD"];
 
-switch ($req) {
-    case "/blogapi/register":
+switch ($resource) {
+    case "register":
         $json = file_get_contents("php://input");
         $array = json_decode($json, true);
         http_response_code(200);
         header("Content-Type: application/json");
-        if ($userManager->registerUser($array)) {
+        if (UserController::registerUser($array)) {
             $data = ["registered" => true];
         } else {
             $data = ["registered" => false];
         }
         echo json_encode($data);
         break;
-    case "/blogapi/login":
+    case "login":
         $json = file_get_contents("php://input");
         $array = json_decode($json, true);
         http_response_code(200);
         header("Content-Type: application/json");
-        $user = $userManager->loginUser($array);
+        $user = UserController::loginUser($array);
         if ($user) {
             $data = ["authenticated" => true];
             $_SESSION["user"] = serialize($user);
@@ -39,12 +43,12 @@ switch ($req) {
         }
         echo json_encode($data);
         break;
-    case "/blogapi/logout":
+    case "logout":
         session_unset();
         session_destroy();
         http_response_code(200);
         break;
-    case "/blogapi/session":
+    case "session":
         if (isset($_SESSION["user"])) {
             $user = unserialize($_SESSION["user"]);
             http_response_code(200);
@@ -54,26 +58,53 @@ switch ($req) {
             echo json_encode(["session" => false]);
         }
         break;
-    case "/blogapi/users":
-        http_response_code(200);
-        header("Content-Type: application/json");
-        $stmt = Database::pdo()->query("SELECT * FROM users");
-        $rows = $stmt->fetchAll();
-        echo json_encode($rows);
+    case "users":
+        switch ($method) {
+            case "GET":
+                http_response_code(200);
+                header("Content-Type: application/json");
+                $response = $id ? UserController::getUser(intval($id)) : UserController::getUser();
+                echo json_encode($response);
+                break;
+            case "POST":
+                break;
+            case "PUT":
+                break;
+            case "DELETE":
+                break;
+        }
         break;
-    case "/blogapi/blogs":
-        http_response_code(200);
-        header("Content-Type: application/json");
-        $stmt = Database::pdo()->query("SELECT * FROM blogs");
-        $rows = $stmt->fetchAll();
-        echo json_encode($rows);
+    case "blogs":
+        switch ($method) {
+            case "GET":
+                http_response_code(200);
+                header("Content-Type: application/json");
+                $response = $id ? BlogController::getBlog(intval($id)) : BlogController::getBlog();
+                echo json_encode($response);
+                break;
+            case "POST":
+                break;
+            case "PUT":
+                break;
+            case "DELETE":
+                break;
+        }
         break;
-    case "/blogapi/posts":
-        http_response_code(200);
-        header("Content-Type: application/json");
-        $stmt = Database::pdo()->query("SELECT * FROM posts");
-        $rows = $stmt->fetchAll();
-        echo json_encode($rows);
+    case "posts":
+        switch ($method) {
+            case "GET":
+                http_response_code(200);
+                header("Content-Type: application/json");
+                $response = $id ? PostController::getPost(intval($id)) : PostController::getPost();
+                echo json_encode($response);
+                break;
+            case "POST":
+                break;
+            case "PUT":
+                break;
+            case "DELETE":
+                break;
+        }
         break;
     default:
         require_once "./app/views/app.php";

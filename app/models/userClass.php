@@ -9,7 +9,7 @@ class User {
     private array $posts;
     private string $createdAt;
     
-    public function __construct(array $array) {
+    public function __construct(?array $array = []) {
         foreach ($array as $key => $value) {
             $setter = "set" . ucfirst($key);
             if (method_exists($this, $setter)) {
@@ -79,8 +79,12 @@ class User {
         return $this->createdAt;
     }
     
-    public function setCreatedAt() : void {
-        $this->createdAt = date('Y-m-d H:i:s');
+    public function setCreatedAt(?string $date = null) : void {
+        if (!$date) {
+            $this->createdAt = date('Y-m-d H:i:s');
+        } else {
+            $this->createdAt = $date;
+        }
     }
 
     public function getProps() {

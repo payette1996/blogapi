@@ -20,17 +20,26 @@
 body {
     margin: 0;
     font-size: 24px;
-    overflow: hidden;
+    overflow-x: hidden;
+}
+
+ol, ul {
+    list-style-position: inside;
+}
+
+ul > .clean {
+    list-style: none;
 }
 
 main {
-    height: 100vh;
+    min-height: 100vh;
     background-color: dodgerblue;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    overflow: hidden;
+    text-align: center;
+    overflow-x: hidden;
 }
 
 form {
